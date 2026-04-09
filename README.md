@@ -63,28 +63,49 @@ This project simulates how data analysts work in an e-commerce environment using
  
 🔧 Project Workflow
 1. Database & Table Creation
+
 CREATE TABLE zepto(
+
   sku_id INT AUTO_INCREMENT PRIMARY KEY,
+  
   category VARCHAR(120),
+  
   name VARCHAR(150) NOT NULL,
+  
   mrp NUMERIC(8,2),
+  
   discountPercent NUMERIC(5,2),
+  
   availableQuantity INTEGER,
+  
   discountedSellingPrice NUMERIC(8,2),
+  
   weightInGms INTEGER,
+  
   outOfStock TINYINT,
+  
   quantity INTEGER
+
 );
 
  
 2. Data Import (CSV)
+
 LOAD DATA LOCAL INFILE 'path/to/your/file.csv'
+
 INTO TABLE zepto
+
 FIELDS TERMINATED BY ','
+
 ENCLOSED BY '"'
+
 LINES TERMINATED BY '\n'
+
 IGNORE 1 ROWS
-(category, name, mrp, discountPercent, availableQuantity, discountedSellingPrice, weightInGms, @outOfStock, quantity)
+
+(category, name, mrp, discountPercent, availableQuantity, discountedSellingPrice, weightInGms, 
+@outOfStock, quantity)
+
 SET outOfStock = IF(@outOfStock = 'TRUE', 1, 0);
 
  
